@@ -11,7 +11,31 @@ namespace ADO
 	{
 		static void Main(string[] args)
 		{
-			string connection_string = "";
+			string connection_string = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_PV_521;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+			Console.WriteLine($"{connection_string}\n");
+
+			SqlConnection connection = new SqlConnection(connection_string);
+			connection.Open();
+
+			string cmd = "SELECT movie_id, title, release_date, first_name, last_name FROM Movies, Directors WHERE director = director_id";
+			SqlCommand command = new SqlCommand(cmd, connection);
+
+			SqlDataReader reader = command.ExecuteReader();
+			for (int i = 0; i < reader.FieldCount; ++i)
+				Console.Write($"{reader.GetName(i)}\t");
+			Console.WriteLine();
+			while (reader.Read())
+			{
+				for (int i = 0; i < reader.FieldCount; ++i)
+					Console.Write($"{reader[i]}\t\t");
+				Console.WriteLine();
+			}
+			reader.Close();
+
+			command.CommandText = "SELECT COUNT(*) FROM Movies";
+			Console.WriteLine($"Кол-во записей: {command.ExecuteScalar()}");
+
+			connection.Close();
 		}
 	}
 }
