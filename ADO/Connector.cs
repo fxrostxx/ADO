@@ -50,7 +50,7 @@ namespace ADO
 			connection.Close();
 			return result;
 		}
-		public int GetMaxPrimaryKey(string table)
+		public string GetPrimaryKeyName(string table)
 		{
 			connection.Open();
 			string cmd = $"SELECT * FROM {table}";
@@ -59,14 +59,19 @@ namespace ADO
 			string PK_name = reader.GetName(0);
 			reader.Close();
 			connection.Close();
-			return (int)Scalar($"SELECT MAX({PK_name}) FROM {table}");
+			return PK_name;
+		}
+		public int GetMaxPrimaryKey(string table)
+		{
+			return (int)Scalar($"SELECT MAX({GetPrimaryKeyName(table)}) FROM {table}");
 		}
 		public int GetNextPrimaryKey(string table)
 		{
 			return GetMaxPrimaryKey(table) + 1;
 		}
-		public void Insert(string cmd)
+		public void Insert(string table, string fields, string values)
 		{
+			string cmd = $"INSERT {table} ({GetPrimaryKeyName(table)}, {fields}) VALUES ({GetNextPrimaryKey(table)}, {values});";
 			connection.Open();
 			SqlCommand command = new SqlCommand(cmd, connection);
 			try
