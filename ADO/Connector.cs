@@ -65,6 +65,14 @@ namespace ADO
 		{
 			return GetMaxPrimaryKey(table) + 1;
 		}
+		public string GetPrimaryKeyColumnName(string table)
+		{
+			string cmd = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE " +
+						 $"WHERE TABLE_NAME = N'{table}' AND CONSTRAINT_NAME = " +
+						 $"(SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS " +
+						 $"WHERE TABLE_NAME = N'{table}' AND CONSTRAINT_TYPE = N'PRIMARY KEY');";
+			return (string)Scalar(cmd);
+		}
 		public void Insert(string cmd)
 		{
 			connection.Open();
@@ -81,6 +89,26 @@ namespace ADO
 					Console.WriteLine("Good");
 			}
 			connection.Close();
+		}
+		public void Insert(string table, string fields, string values)
+		{
+			string condition = "";
+			string[] s_fields = fields.Split(',');
+			string[] s_values = values.Split(',');
+			string parsedValues = $"{s_values[0]},";
+			for (int i = 1; i < s_fields.Length; ++i)
+			{
+				condition += $" {s_fields[i]} = N'{s_values[i]}' ";
+				parsedValues += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+				if (i != s_fields.Length - 1)
+				{
+					condition += "AND";
+					parsedValues += ",";
+				}
+			}
+			string cmd = $"IF NOT EXISTS (SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition}) " +
+				         $"INSERT {table}({fields}) VALUES ({parsedValues})";
+			Insert(cmd);
 		}
 	}
 }
