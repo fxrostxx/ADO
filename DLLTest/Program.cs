@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DBTools;
+using System.Configuration;
 
 namespace DLLTest
 {
@@ -11,9 +11,11 @@ namespace DLLTest
 	{
 		static void Main(string[] args)
 		{
-			string connection_string = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Movies_PV_521;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-			Connector connector = new Connector(connection_string);
+			DBTools.Connector connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["Movies_PV_521"].ConnectionString);
 			connector.Select("SELECT * FROM Movies");
+
+			DBTools.Connector academyConnector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
+			academyConnector.Select("SELECT * FROM Disciplines");
 		}
 	}
 }
