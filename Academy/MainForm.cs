@@ -19,6 +19,7 @@ namespace Academy
 			InitializeComponent();
 			connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
 			dgvDirections.DataSource = connector.Select("*", "Directions");
+			toolStripStatusLabel.Text = $"Количество направлений обучения: {dgvDirections.Rows.Count - 1}";
 		}
 	}
 }
