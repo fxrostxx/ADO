@@ -14,12 +14,38 @@ namespace Academy
 	public partial class MainForm : Form
 	{
 		DBTools.Connector connector;
+		Query[] queries =
+		{
+			new Query
+			(
+				"last_name,first_name,middle_name,group_name,direction_name",
+				"Students,Groups,Directions",
+				"[group]=group_id AND direction=direction_id"
+			),
+			new Query
+			(
+				"*",
+				"Groups,Directions",
+				"direction=direction_id"
+			),
+			new Query("*", "Directions"),
+			new Query("*", "Disciplines"),
+			new Query("*", "Teachers")
+		};
+		string[] statusMessages = { "студентов", "групп", "направлений", "дисциплин", "преподавателей" };
+		DataGridView[] tables;
 		public MainForm()
 		{
 			InitializeComponent();
+			tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
 			connector = new DBTools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
-			dgvDirections.DataSource = connector.Select("*", "Directions");
-			toolStripStatusLabel.Text = $"Количество направлений обучения: {dgvDirections.Rows.Count - 1}";
+			tabControl_SelectedIndexChanged(tabControl, null);
+		}
+		private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int i = tabControl.SelectedIndex;
+			tables[i].DataSource = connector.Select(queries[i].ToString());
+			toolStripStatusLabel.Text = $"Количество {statusMessages[i]}: {tables[i].RowCount - 1}";
 		}
 	}
 }
