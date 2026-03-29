@@ -17,10 +17,16 @@ namespace Academy
 			Tables = tables;
 			Condition = condition;
 		}
+		public Query(Query query)
+		{
+			Fields = query.Fields;
+			Tables = query.Tables;
+			Condition = query.Condition;
+		}
 		public override string ToString()
 		{
 			string query = $"SELECT {Fields} FROM {Tables}";
-			if (Condition != "") query += $" WHERE {Condition};";
+			if (Condition != "") query += $" WHERE {Condition}";
 			return query;
 		}
 	}
