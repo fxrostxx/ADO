@@ -80,8 +80,8 @@ namespace Academy
 				else query.Condition = currentFilter;
 				tables[tabIndex].DataSource = connector.Select(query.ToString());
 				toolStripStatusLabel.Text = $"Количество {statusMessages[tabIndex]}: {tables[tabIndex].RowCount - 1}";
+				cbFields_SelectedIndexChanged(cbFields, null);
 			}
-			cbFields_SelectedIndexChanged(cbFields, null);
 		}
 		private void buttonRemoveFilters_Click(object sender, EventArgs e)
 		{
