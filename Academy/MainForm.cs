@@ -85,16 +85,19 @@ namespace Academy
 		}
 		private void buttonRemoveFilters_Click(object sender, EventArgs e)
 		{
-			currentFilter = "";
-			int tabIndex = tabControl.SelectedIndex;
-			tables[tabIndex].DataSource = connector.Select(queries[tabIndex].ToString());
-			cbRecords.Items.Clear();
-			cbRecords.Text = "";
-			HashSet<string> values = new HashSet<string> { };
-			for (int j = 0; j < tables[tabIndex].RowCount - 1; ++j)
-				values.Add(tables[tabIndex].Rows[j].Cells[cbFields.SelectedIndex].Value.ToString());
-			cbRecords.Items.AddRange(values.ToArray());
-			toolStripStatusLabel.Text = $"Количество {statusMessages[tabIndex]}: {tables[tabIndex].RowCount - 1}";
+			if (cbFields.Text != "" || cbRecords.Text != "")
+			{
+				currentFilter = "";
+				int tabIndex = tabControl.SelectedIndex;
+				tables[tabIndex].DataSource = connector.Select(queries[tabIndex].ToString());
+				cbRecords.Items.Clear();
+				cbRecords.Text = "";
+				HashSet<string> values = new HashSet<string> { };
+				for (int j = 0; j < tables[tabIndex].RowCount - 1; ++j)
+					values.Add(tables[tabIndex].Rows[j].Cells[cbFields.SelectedIndex].Value.ToString());
+				cbRecords.Items.AddRange(values.ToArray());
+				toolStripStatusLabel.Text = $"Количество {statusMessages[tabIndex]}: {tables[tabIndex].RowCount - 1}";
+			}
 		}
 	}
 }
