@@ -79,6 +79,7 @@ namespace Academy
 				if (query.Condition != "") query.Condition += $" AND {currentFilter}";
 				else query.Condition = currentFilter;
 				tables[tabIndex].DataSource = connector.Select(query.ToString());
+				toolStripStatusLabel.Text = $"Количество {statusMessages[tabIndex]}: {tables[tabIndex].RowCount - 1}";
 			}
 			cbFields_SelectedIndexChanged(cbFields, null);
 		}
@@ -93,6 +94,7 @@ namespace Academy
 			for (int j = 0; j < tables[tabIndex].RowCount - 1; ++j)
 				values.Add(tables[tabIndex].Rows[j].Cells[cbFields.SelectedIndex].Value.ToString());
 			cbRecords.Items.AddRange(values.ToArray());
+			toolStripStatusLabel.Text = $"Количество {statusMessages[tabIndex]}: {tables[tabIndex].RowCount - 1}";
 		}
 	}
 }
