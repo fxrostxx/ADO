@@ -36,6 +36,7 @@ namespace Academy
 		};
 		string[] statusMessages = { "студентов", "групп", "направлений", "дисциплин", "преподавателей" };
 		DataGridView[] tables;
+		StudentForm studentForm;
 		public MainForm()
 		{
 			InitializeComponent();
@@ -66,6 +67,11 @@ namespace Academy
 			cbStudentsGroup.Items.AddRange(d_groups.Keys.ToArray());
 			dgvStudents.DataSource = connector.Select(queries[0].ToString() + $" AND direction={d_directions[cbStudentsDirection.SelectedItem.ToString()]}");
 			toolStripStatusLabel.Text = $"Количество {statusMessages[0]}: {dgvStudents.RowCount - 1}";
+		}
+		private void buttonAddStudent_Click(object sender, EventArgs e)
+		{
+			studentForm = new StudentForm();
+			studentForm.ShowDialog();
 		}
 	}
 }
