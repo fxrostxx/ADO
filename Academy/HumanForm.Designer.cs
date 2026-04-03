@@ -35,7 +35,7 @@
 			this.tbLastname = new System.Windows.Forms.TextBox();
 			this.tbFirstname = new System.Windows.Forms.TextBox();
 			this.tbMiddlename = new System.Windows.Forms.TextBox();
-			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+			this.dtpBirthdate = new System.Windows.Forms.DateTimePicker();
 			this.pictureBox = new System.Windows.Forms.PictureBox();
 			this.button = new System.Windows.Forms.Button();
 			this.tbEmail = new System.Windows.Forms.TextBox();
@@ -117,15 +117,15 @@
 			this.tbMiddlename.Size = new System.Drawing.Size(311, 34);
 			this.tbMiddlename.TabIndex = 6;
 			// 
-			// dateTimePicker1
+			// dtpBirthdate
 			// 
-			this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dateTimePicker1.Location = new System.Drawing.Point(207, 138);
-			this.dateTimePicker1.Name = "dateTimePicker1";
-			this.dateTimePicker1.Size = new System.Drawing.Size(311, 34);
-			this.dateTimePicker1.TabIndex = 7;
+			this.dtpBirthdate.CalendarFont = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dtpBirthdate.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.dtpBirthdate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.dtpBirthdate.Location = new System.Drawing.Point(207, 138);
+			this.dtpBirthdate.Name = "dtpBirthdate";
+			this.dtpBirthdate.Size = new System.Drawing.Size(311, 34);
+			this.dtpBirthdate.TabIndex = 7;
 			// 
 			// pictureBox
 			// 
@@ -197,6 +197,7 @@
 			this.buttonOk.TabIndex = 14;
 			this.buttonOk.Text = "OK";
 			this.buttonOk.UseVisualStyleBackColor = true;
+			this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
 			// 
 			// button1
 			// 
@@ -222,7 +223,7 @@
 			this.Controls.Add(this.labelEmail);
 			this.Controls.Add(this.button);
 			this.Controls.Add(this.pictureBox);
-			this.Controls.Add(this.dateTimePicker1);
+			this.Controls.Add(this.dtpBirthdate);
 			this.Controls.Add(this.tbMiddlename);
 			this.Controls.Add(this.tbFirstname);
 			this.Controls.Add(this.tbLastname);
@@ -231,6 +232,8 @@
 			this.Controls.Add(this.labelFirstname);
 			this.Controls.Add(this.labelLastname);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "HumanForm";
 			this.ShowInTaskbar = false;
 			this.Text = "HumanForm";
@@ -246,17 +249,17 @@
 		private System.Windows.Forms.Label labelFirstname;
 		private System.Windows.Forms.Label labelMiddlename;
 		private System.Windows.Forms.Label labelBirthdate;
-		private System.Windows.Forms.TextBox tbLastname;
-		private System.Windows.Forms.TextBox tbFirstname;
-		private System.Windows.Forms.TextBox tbMiddlename;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.Windows.Forms.PictureBox pictureBox;
 		private System.Windows.Forms.Button button;
-		private System.Windows.Forms.TextBox tbEmail;
 		private System.Windows.Forms.Label labelEmail;
-		private System.Windows.Forms.TextBox tbPhone;
 		private System.Windows.Forms.Label labelPhone;
 		private System.Windows.Forms.Button buttonOk;
 		private System.Windows.Forms.Button button1;
+		protected System.Windows.Forms.TextBox tbLastname;
+		protected System.Windows.Forms.TextBox tbFirstname;
+		protected System.Windows.Forms.TextBox tbMiddlename;
+		protected System.Windows.Forms.DateTimePicker dtpBirthdate;
+		protected System.Windows.Forms.PictureBox pictureBox;
+		protected System.Windows.Forms.TextBox tbEmail;
+		protected System.Windows.Forms.TextBox tbPhone;
 	}
 }

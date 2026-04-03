@@ -121,7 +121,7 @@ namespace DBTools
 			string condition = "";
 			string[] s_fields = fields.Split(',');
 			string[] s_values = values.Split(',');
-			string parsedValues = $"{s_values[0]},";
+			string parsedValues = $"N'{s_values[0]}',";
 			for (int i = 1; i < s_fields.Length; ++i)
 			{
 				condition += $" {s_fields[i]} = N'{s_values[i]}' ";
