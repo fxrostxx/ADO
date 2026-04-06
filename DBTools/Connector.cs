@@ -121,11 +121,15 @@ namespace DBTools
 			string condition = "";
 			string[] s_fields = fields.Split(',');
 			string[] s_values = values.Split(',');
-			string parsedValues = $"N'{s_values[0]}',";
-			for (int i = 1; i < s_fields.Length; ++i)
+			string parsedValues = "";
+			string parsedFields = "";
+			for (int i = s_fields[0].Contains("_id") ? 1 : 0; i < s_fields.Length; ++i)
 			{
+				if (s_values[i] == "") continue;
 				condition += $" {s_fields[i]} = N'{s_values[i]}' ";
-				parsedValues += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+				parsedFields += s_fields[i];
+				if (i != s_fields.Length - 1) parsedFields += ",";
+				parsedValues += s_values[i][0] != 'N' && s_values[i].Length > 1 && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
 				if (i != s_fields.Length - 1)
 				{
 					condition += "AND";
@@ -133,7 +137,7 @@ namespace DBTools
 				}
 			}
 			string cmd = $"IF NOT EXISTS (SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition}) " +
-						 $"INSERT {table}({fields}) VALUES ({parsedValues})";
+						 $"INSERT {table}({parsedFields}) VALUES ({parsedValues})";
 			Insert(cmd);
 		}
 	}
