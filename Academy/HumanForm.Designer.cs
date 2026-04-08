@@ -36,7 +36,7 @@
 			this.tbFirstname = new System.Windows.Forms.TextBox();
 			this.tbMiddlename = new System.Windows.Forms.TextBox();
 			this.dtpBirthdate = new System.Windows.Forms.DateTimePicker();
-			this.pictureBox = new System.Windows.Forms.PictureBox();
+			this.pbPhoto = new System.Windows.Forms.PictureBox();
 			this.button = new System.Windows.Forms.Button();
 			this.tbEmail = new System.Windows.Forms.TextBox();
 			this.labelEmail = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
 			this.labelPhone = new System.Windows.Forms.Label();
 			this.buttonOk = new System.Windows.Forms.Button();
 			this.button1 = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// labelLastname
@@ -127,15 +127,15 @@
 			this.dtpBirthdate.Size = new System.Drawing.Size(311, 34);
 			this.dtpBirthdate.TabIndex = 7;
 			// 
-			// pictureBox
+			// pbPhoto
 			// 
-			this.pictureBox.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox.Location = new System.Drawing.Point(524, 6);
-			this.pictureBox.Name = "pictureBox";
-			this.pictureBox.Size = new System.Drawing.Size(222, 254);
-			this.pictureBox.TabIndex = 8;
-			this.pictureBox.TabStop = false;
+			this.pbPhoto.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.pbPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pbPhoto.Location = new System.Drawing.Point(524, 6);
+			this.pbPhoto.Name = "pbPhoto";
+			this.pbPhoto.Size = new System.Drawing.Size(222, 254);
+			this.pbPhoto.TabIndex = 8;
+			this.pbPhoto.TabStop = false;
 			// 
 			// button
 			// 
@@ -222,7 +222,7 @@
 			this.Controls.Add(this.tbEmail);
 			this.Controls.Add(this.labelEmail);
 			this.Controls.Add(this.button);
-			this.Controls.Add(this.pictureBox);
+			this.Controls.Add(this.pbPhoto);
 			this.Controls.Add(this.dtpBirthdate);
 			this.Controls.Add(this.tbMiddlename);
 			this.Controls.Add(this.tbFirstname);
@@ -237,7 +237,7 @@
 			this.Name = "HumanForm";
 			this.ShowInTaskbar = false;
 			this.Text = "HumanForm";
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -258,7 +258,7 @@
 		protected System.Windows.Forms.TextBox tbFirstname;
 		protected System.Windows.Forms.TextBox tbMiddlename;
 		protected System.Windows.Forms.DateTimePicker dtpBirthdate;
-		protected System.Windows.Forms.PictureBox pictureBox;
+		protected System.Windows.Forms.PictureBox pbPhoto;
 		protected System.Windows.Forms.TextBox tbEmail;
 		protected System.Windows.Forms.TextBox tbPhone;
 	}

@@ -13,7 +13,7 @@ namespace Academy
 {
 	public partial class HumanForm : Form
 	{
-		public HumanForm()
+		protected HumanForm()
 		{
 			InitializeComponent();
 		}
