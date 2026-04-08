@@ -13,10 +13,23 @@ namespace Academy
 {
 	public partial class HumanForm : Form
 	{
+		protected Models.Human human;
 		protected HumanForm()
 		{
 			InitializeComponent();
 		}
-		protected virtual void buttonOk_Click(object sender, EventArgs e) { }
+		protected virtual void buttonOk_Click(object sender, EventArgs e)
+		{
+			human = new Models.Human
+			(
+				tbLastname.Text,
+				tbFirstname.Text,
+				tbMiddlename.Text,
+				dtpBirthdate.Value.ToString("yyyy-MM-dd"),
+				tbEmail.Text,
+				tbPhone.Text,
+				pbPhoto.Image
+			);
+		}
 	}
 }

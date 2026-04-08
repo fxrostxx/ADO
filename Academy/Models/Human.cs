@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Academy.Models
 {
-	internal class Human
+	public class Human
 	{
 		string lastName;
 		string firstName;
@@ -26,13 +26,23 @@ namespace Academy.Models
 			this.phone = phone;
 			this.photo = photo;
 		}
+		public Human(Human other)
+		{
+			this.lastName = other.lastName;
+			this.firstName = other.firstName;
+			this.middleName = other.middleName;
+			this.birthDate = other.birthDate;
+			this.email = other.email;
+			this.phone = other.phone;
+			this.photo = other.photo;
+		}
 		public virtual string GetNames()
 		{
-			return "last_name,first_name,middle_name,birth_date,email,phone,photo";
+			return "last_name,first_name,middle_name,birth_date,email,phone";
 		}
 		public virtual string GetValues()
 		{
-			return $"{lastName},{firstName},{middleName},{birthDate},{email},{phone},{photo}";
+			return $"{lastName},{firstName},{middleName},{birthDate},{email},{phone}";
 		}
 	}
 }
