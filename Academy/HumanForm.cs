@@ -13,10 +13,22 @@ namespace Academy
 {
 	public partial class HumanForm : Form
 	{
-		protected Models.Human human;
+		internal Models.Human human;
 		protected HumanForm()
 		{
 			InitializeComponent();
+		}
+		protected void Extract()
+		{
+			if (human != null)
+			{
+				tbLastname.Text = human.lastName;
+				tbFirstname.Text = human.firstName;
+				tbMiddlename.Text = human.middleName;
+				dtpBirthdate.Value = Convert.ToDateTime(human.birthDate);
+				tbEmail.Text = human.email;
+				tbPhone.Text = human.phone;
+			}
 		}
 		protected virtual void buttonOk_Click(object sender, EventArgs e)
 		{
