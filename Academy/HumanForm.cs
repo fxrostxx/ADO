@@ -22,6 +22,7 @@ namespace Academy
 		{
 			if (human != null)
 			{
+				if (human.id != 0) labelID.Text = $"ID: {human.id}";
 				tbLastname.Text = human.lastName;
 				tbFirstname.Text = human.firstName;
 				tbMiddlename.Text = human.middleName;
@@ -34,6 +35,7 @@ namespace Academy
 		{
 			human = new Models.Human
 			(
+				labelID.Text == "" ? 0 : Convert.ToInt32(labelID.Text.Split(':').Last()),
 				tbLastname.Text,
 				tbFirstname.Text,
 				tbMiddlename.Text,

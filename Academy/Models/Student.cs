@@ -10,8 +10,8 @@ namespace Academy.Models
 	class Student : Human
 	{
 		internal int group;
-		public Student(string lastName, string firstName, string middleName, string birthDate, string email, string phone, Image photo, int group)
-			: base(lastName, firstName, middleName, birthDate, email, phone, photo)
+		public Student(int id, string lastName, string firstName, string middleName, string birthDate, string email, string phone, Image photo, int group)
+			: base(id, lastName, firstName, middleName, birthDate, email, phone, photo)
 		{
 			this.group = group;
 		}
@@ -22,6 +22,14 @@ namespace Academy.Models
 		public Student(object[] values) : base(values)
 		{
 			this.group = Convert.ToInt32(values[8]);
+		}
+		public override string GetCondition()
+		{
+			return base.GetCondition() + $" AND [group]={group}";
+		}
+		public string GetUpdateString()
+		{
+			return GetCondition().Replace(" AND ", ",");
 		}
 		public override string GetNames()
 		{
