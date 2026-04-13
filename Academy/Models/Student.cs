@@ -37,7 +37,7 @@ namespace Academy.Models
 		}
 		public override string GetValues()
 		{
-			return $"{base.GetValues()},{group}";
+			return $"{base.GetValues()},N'{group}'";
 		}
 	}
 }

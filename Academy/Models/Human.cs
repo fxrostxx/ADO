@@ -63,7 +63,7 @@ namespace Academy.Models
 		}
 		public virtual string GetValues()
 		{
-			return $"{lastName},{firstName},{middleName},{birthDate},{email},{phone}";
+			return $"N'{lastName}',N'{firstName}',N'{middleName}',N'{birthDate}',N'{email}',N'{phone}'";
 		}
 		public virtual string GetCondition()
 		{
