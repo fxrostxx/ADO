@@ -69,5 +69,9 @@ namespace Academy.Models
 		{
 			return $" last_name=N'{lastName}' AND first_name=N'{firstName}' AND middle_name=N'{middleName}' AND birth_date=N'{birthDate}' AND email=N'{email}' AND phone=N'{phone}'";
 		}
+		public string GetUpdateString()
+		{
+			return GetCondition().Replace(" AND ", ",");
+		}
 	}
 }

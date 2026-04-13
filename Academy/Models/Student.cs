@@ -27,10 +27,6 @@ namespace Academy.Models
 		{
 			return base.GetCondition() + $" AND [group]={group}";
 		}
-		public string GetUpdateString()
-		{
-			return GetCondition().Replace(" AND ", ",");
-		}
 		public override string GetNames()
 		{
 			return $"{base.GetNames()},[group]";
