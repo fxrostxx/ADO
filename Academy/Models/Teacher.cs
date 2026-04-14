@@ -30,7 +30,7 @@ namespace Academy.Models
 		}
 		public override string GetCondition()
 		{
-			return base.GetCondition() + $" AND work_since=N'{workSince}' AND rate=N'{rate}'";
+			return base.GetCondition() + $" AND work_since=N'{workSince}' AND rate={rate.ToString().Replace(',', '.')}";
 		}
 		public override string GetNames()
 		{
@@ -38,7 +38,7 @@ namespace Academy.Models
 		}
 		public override string GetValues()
 		{
-			return $"{base.GetValues()},N'{workSince}',N'{rate}'";
+			return $"{base.GetValues()},N'{workSince}',{rate.ToString().Replace(',', '.')}";
 		}
 	}
 }

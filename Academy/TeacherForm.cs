@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Academy
 {
@@ -25,13 +26,14 @@ namespace Academy
 			human = teacher;
 			Extract();
 			pbPhoto.Image = DataBase.Connector.DownloadPhoto("Teachers", "photo", teacher.id);
+			tbRate.Text = teacher.rate.ToString().Replace('.', ',');
 		}
 		protected override void buttonOk_Click(object sender, EventArgs e)
 		{
 			base.buttonOk_Click(sender, e);
-			teacher = new Models.Teacher(human, dtpWorkSince.Value.ToString("yyyy-MM-dd"), Convert.ToDecimal(tbRate.Text));
+			teacher = new Models.Teacher(human, dtpWorkSince.Value.ToString("yyyy-MM-dd"), Convert.ToDecimal(tbRate.Text, tbRate.Text.Contains(".") ? new CultureInfo("en-US") : new CultureInfo("ru-RU")));
 			if (teacher.id == 0) teacher.id = Convert.ToInt32(DataBase.Connector.Scalar($"INSERT Teachers({teacher.GetNames()}) VALUES ({teacher.GetValues()});SELECT SCOPE_IDENTITY()"));
-			else DataBase.Connector.Update($"UPDATE Students SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
+			else DataBase.Connector.Update($"UPDATE Teachers SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
 			if (teacher.photo != null) DataBase.Connector.UploadPhoto(teacher.SerializePhoto(), teacher.id, "photo", "Teachers");
 		}
 	}
