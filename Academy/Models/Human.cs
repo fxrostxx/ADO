@@ -26,7 +26,7 @@ namespace Academy.Models
 			this.middleName = middleName;
 			this.birthDate = birthDate;
 			this.email = email;
-			this.phone = phone;
+			this.phone = string.IsNullOrWhiteSpace(phone) ? "" : phone;
 			this.photo = photo;
 		}
 		public Human(Human other)
@@ -37,7 +37,7 @@ namespace Academy.Models
 			this.middleName = other.middleName;
 			this.birthDate = other.birthDate;
 			this.email = other.email;
-			this.phone = other.phone;
+			this.phone = string.IsNullOrWhiteSpace(other.phone) ? "" : other.phone;
 			this.photo = other.photo;
 		}
 		public Human(object[] values)
@@ -48,7 +48,7 @@ namespace Academy.Models
 			this.middleName = values[3].ToString();
 			this.birthDate = values[4].ToString();
 			this.email = values[5].ToString();
-			this.phone = values[6].ToString();
+			this.phone = string.IsNullOrWhiteSpace(values[6].ToString()) ? "" : phone;
 		}
 		public byte[] SerializePhoto()
 		{
